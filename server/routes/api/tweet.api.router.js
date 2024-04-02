@@ -7,18 +7,13 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: User,
-          as: 'user',
+          as: 'tweetUser',
           attributes: ['id', 'name'],
         },
         {
           model: Like,
-          as: 'likes',
+          as: 'tweetLikes',
           attributes: ['id', 'user_id', 'tweet_id'],
-          include: {
-            model: User,
-            as: 'user',
-            attributes: ['id', 'name'],
-          },
         },
       ],
     });
@@ -37,18 +32,13 @@ router.get('/:id', async (req, res) => {
       include: [
         {
           model: User,
-          as: 'user',
+          as: 'tweetUser',
           attributes: ['id', 'name'],
         },
         {
           model: Like,
-          as: 'likes',
+          as: 'tweetLikes',
           attributes: ['id', 'user_id', 'tweet_id'],
-          include: {
-            model: User,
-            as: 'user',
-            attributes: ['id', 'name'],
-          },
         },
       ],
     });
@@ -62,14 +52,14 @@ router.get('/:id', async (req, res) => {
 router.post('/create', async (req, res) => {
   try {
     const { img, content } = req.body;
-    const { user } = res.locals;
+    // const { user } = res.locals;
     if (content.trim() === '') {
       res.json({ message: 'Заполните Щебетание' });
     } else {
       const tweetCr = await Tweet.create({
         img,
         content,
-        user_id: user.id,
+        user_id: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       });
@@ -78,18 +68,13 @@ router.post('/create', async (req, res) => {
         include: [
           {
             model: User,
-            as: 'user',
+            as: 'tweetUser',
             attributes: ['id', 'name'],
           },
           {
             model: Like,
-            as: 'likes',
+            as: 'tweetLikes',
             attributes: ['id', 'user_id', 'tweet_id'],
-            include: {
-              model: User,
-              as: 'user',
-              attributes: ['id', 'name'],
-            },
           },
         ],
       });
@@ -102,48 +87,39 @@ router.post('/create', async (req, res) => {
 });
 
 router.delete('/:id', async (req, res) => {
+  console.log(123);
   try {
     const { id } = req.params;
-    const { user } = res.locals;
+    // const { user } = res.locals;
     const tweet = await Tweet.findOne({
       where: { id },
       include: [
         {
           model: User,
-          as: 'user',
+          as: 'tweetUser',
           attributes: ['id', 'name'],
         },
         {
           model: Like,
-          as: 'likes',
+          as: 'tweetLikes',
           attributes: ['id', 'user_id', 'tweet_id'],
-          include: {
-            model: User,
-            as: 'user',
-            attributes: ['id', 'name'],
-          },
         },
       ],
     });
-    const areUsers = tweet.user_id === user.id;
-    if (areUsers) {
+    // const areUsers = tweet.user_id === user.id;
+    if (true) {
       await Tweet.destroy({
         where: { id },
         include: [
           {
             model: User,
-            as: 'user',
+            as: 'tweetUser',
             attributes: ['id', 'name'],
           },
           {
             model: Like,
-            as: 'likes',
+            as: 'tweetLikes',
             attributes: ['id', 'user_id', 'tweet_id'],
-            include: {
-              model: User,
-              as: 'user',
-              attributes: ['id', 'name'],
-            },
           },
         ],
       });
@@ -166,18 +142,13 @@ router.put('/:id', async (req, res) => {
       include: [
         {
           model: User,
-          as: 'user',
+          as: 'tweetUser',
           attributes: ['id', 'name'],
         },
         {
           model: Like,
-          as: 'likes',
+          as: 'tweetLikes',
           attributes: ['id', 'user_id', 'tweet_id'],
-          include: {
-            model: User,
-            as: 'user',
-            attributes: ['id', 'name'],
-          },
         },
       ],
     });
@@ -208,18 +179,13 @@ router.post('/like:id', async (req, res) => {
       include: [
         {
           model: User,
-          as: 'user',
+          as: 'tweetUser',
           attributes: ['id', 'name'],
         },
         {
           model: Like,
-          as: 'likes',
+          as: 'tweetLikes',
           attributes: ['id', 'user_id', 'tweet_id'],
-          include: {
-            model: User,
-            as: 'user',
-            attributes: ['id', 'name'],
-          },
         },
       ],
     });

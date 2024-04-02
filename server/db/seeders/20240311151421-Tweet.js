@@ -4,23 +4,23 @@ module.exports = {
     const user1 = [
       {
         content: 'Сегодня я купил огурцы',
-        img: '/src/1id.jpg',
+        img: '/img/1id.jpg',
       },
       {
         content: 'Сегодня я купил помидоры',
-        img: '/src/2id.jpg',
+        img: '/img/2id.jpg',
       },
       {
         content: 'Сегодня я купил картофель',
-        img: '/src/3id.jpg',
+        img: '/img/3id.jpg',
       },
       {
         content: 'Сегодня я купил лук',
-        img: '/src/4id.jpg',
+        img: '/img/4id.jpg',
       },
       {
         content: 'Сегодня я купил редис',
-        img: '/src/5id.jpg',
+        img: '/img/5id.jpg',
       },
     ].map((el, i) => ({
       ...el,

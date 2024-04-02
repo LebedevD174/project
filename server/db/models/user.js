@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({Like, Tweet}) {
       // define association here
-      this.hasMany(Like, { foreignKey: 'user_id' });
-      this.hasMany(Tweet, { foreignKey: 'user_id' });
+      this.hasMany(Like, { foreignKey: 'user_id', as: 'userLikes' });
+      this.hasMany(Tweet, { foreignKey: 'user_id', as: 'userTweets' });
     }
   }
   User.init({
