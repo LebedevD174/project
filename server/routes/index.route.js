@@ -14,7 +14,7 @@ const apiTweetRoute = require('./api/tweet.api.router');
 // router.use('/tweet', tweetRoute);
 
 router.use('/api/sign', apiSignRoute);
-router.use('/api/tweet', apiTweetRoute);
+router.use('/api/tweets', apiTweetRoute);
 // router.use('*', errRoute)
 
 module.exports = router;
